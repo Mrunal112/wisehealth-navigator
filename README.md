@@ -73,5 +73,14 @@ To get started with the WiseHealth Navigator, follow these steps:
 
 Happy navigating with WiseHealth Navigator!
 
-
-
+## Screenshots
+- Landing Page
+![App Screenshot](https://github.com/Mrunal112/wisehealth-navigator/blob/main/Screenshots/Admin%20Login.png?raw=true)
+- Admin Login
+![App Screenshot](https://github.com/Mrunal112/wisehealth-navigator/blob/main/Screenshots/Admin%20Login.png?raw=true)
+- Valid User
+![App Screenshot](https://github.com/Mrunal112/wisehealth-navigator/blob/main/Screenshots/Valid%20User.png?raw=true)
+- Unvalid User
+![App Screenshot](https://github.com/Mrunal112/wisehealth-navigator/blob/main/Screenshots/Unvalid%20User.png?raw=true)
+- Database 
+![App Screenshot](https://github.com/Mrunal112/wisehealth-navigator/blob/main/Screenshots/Database.png?raw=true)
