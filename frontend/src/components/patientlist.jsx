@@ -9,7 +9,7 @@ export function PatientList() {
 
     useEffect(() => {
 
-        async function getData() {
+        const fetchdata = async function getData() {
             try {
                 const response = await axios.get('http://localhost:3000/getdata');
                 setPatientsdata(response.data.data);
@@ -17,13 +17,18 @@ export function PatientList() {
                 console.error('Error fetching data:', error);
             }
         }
-        getData();
+
+        fetchdata();
+
+        const intervalID = setInterval(fetchdata, 10000);
 
         const synth = window.speechSynthesis;
         if (synth) {
             setSpeechSynthesis(synth);
         }
-    }, [patientsdata]);
+
+        return () => clearInterval(intervalID);
+    }, []);
 
     const speak = (text) => {
         if (speechSynthesis) {
@@ -35,33 +40,31 @@ export function PatientList() {
 
     return (
         <div className="grid grid-cols-1 gap-8">
-          {patientsdata
-            .filter((patients) => !patients.completed) // Show only when patients.completed is false
-            .map((patients, index) => (
-              <div key={index} className="w-full">
-                <div className="rounded-md overflow-hidden shadow-md bg-white p-4">
-                  <h1 className="text-lg font-semibold mb-2">
-                    {patients.name}
-                    <button className="ml-2 text-blue-500" onClick={() => speak(patients.name)}>
-                      <FaVolumeUp />
-                    </button>
-                  </h1>
-                  <div className="flex justify-center items-center mb-2">
-                    <span className="text-gray-600">Age:</span>
-                    <span className="text-gray-800 font-semibold ml-2">{patients.age}</span>
-                  </div>
-                  <div className="flex justify-center items-center mb-2">
-                    <span className="text-gray-600">Tests:</span>
-                    <span className="text-gray-800 font-bold ml-2">{patients.tests}</span>
-                  </div>
-                  <p className={`${patients.completed ? 'text-green-500' : index === 0 ? 'text-blue-500' : 'text-red-600'} font-semibold`}>
-                    {patients.completed ? "Tests completed" : index === 0 ? "In Progress" : "Waiting No. " + index}
-                  </p>
-                </div>
-              </div>
-            ))}
+            {patientsdata
+                .filter((patients) => !patients.completed)
+                .map((patients, index) => (
+                    <div key={count++} className="w-full">
+                        <div className="rounded-md overflow-hidden shadow-md bg-white p-4">
+                            <h1 className="text-lg font-semibold mb-2">
+                                {patients.name}
+                                <button className="ml-2 text-blue-500" onClick={() => speak(patients.name)}>
+                                    <FaVolumeUp />
+                                </button>
+                            </h1>
+                            <div className="flex justify-center items-center mb-2">
+                                <span className="text-gray-600">Age:</span>
+                                <span className="text-gray-800 font-semibold ml-2">{patients.age}</span>
+                            </div>
+                            <div className="flex justify-center items-center mb-2">
+                                <span className="text-gray-600">Tests:</span>
+                                <span className="text-gray-800 font-bold ml-2">{patients.tests}</span>
+                            </div>
+                            <p className={`${patients.completed ? 'text-green-500' : index === 0 ? 'text-blue-500' : 'text-red-600'} font-semibold`}>
+                                {patients.completed ? "Tests completed" : index === 0 ? "In Progress" : "Waiting No. " + index}
+                            </p>
+                        </div>
+                    </div>
+                ))}
         </div>
-      );
-
-
+    );
 }
