@@ -78,7 +78,11 @@ app.put('/updateinfo', async (req, res) => {
     const name = req.body.name;
 
     try {
-        const updatedPatient = await Patient.updateOne({ name }, { completed: true });
+        const updatedPatient = await Patient.findOneAndUpdate({ name }, { completed: true });
+
+        if (!updatedPatient) {
+            return res.status(404).json({ error: 'Patient not found' });
+        }
         res.status(200).json({ msg: 'Patient updated successfully' });
     } catch (error) {
         console.error('Error updating patient:', error);

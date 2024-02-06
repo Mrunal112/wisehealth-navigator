@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Use this if you want to redirect after successful login
+import { useNavigate } from 'react-router-dom'; 
 import { NewNav } from './NewNav';
 
 export function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const history = useNavigate(); // Initialize history for redirect
+    const history = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();

@@ -21,7 +21,6 @@ export function AddPatient() {
 
             console.log(response.data.msg);
             alert("Patient added successfully");
-            // Add any additional logic here after successfully adding the patient
         } catch (error) {
             // console.error('Error adding patient:', error);
             alert("Invalid Input");
@@ -36,8 +35,11 @@ export function AddPatient() {
                 name: patientName
             });
 
+            console.log(response.data.msg);
             if (response.data.msg === 'Patient updated successfully') {
                 alert("Patient info updated successfully");
+            }else{
+                alert("Failed to update patient info");
             }
         } catch (error) {
             console.error('Error updating patient info:', error);
