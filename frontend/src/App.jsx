@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Navbar } from './components/navbar';
 import { Login } from './components/login';
 import { AboutUs } from './pages/aboutus';
+import { AddPatient } from './components/AddPatient';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Suspense fallback={"loading..."}><Navbar /></Suspense>} />
             <Route path="/login" element={<Suspense fallback={"loading..."}><Login /></Suspense>} />
             <Route path="/aboutus" element={<Suspense fallback={"loading..."}><AboutUs /></Suspense>} />
+            <Route path="/admin/addpatient" element={<Suspense fallback={"loading..."}><AddPatient /></Suspense>} />
           </Routes>
         </BrowserRouter>
       </div>
