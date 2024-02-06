@@ -75,7 +75,7 @@ Happy navigating with WiseHealth Navigator!
 
 ## Screenshots
 - Landing Page
-![App Screenshot](https://github.com/Mrunal112/wisehealth-navigator/blob/main/Screenshots/Admin%20Login.png?raw=true)
+![App Screenshot](https://github.com/Mrunal112/wisehealth-navigator/blob/main/Screenshots/Landing%20Page.png?raw=true)
 - Admin Login
 ![App Screenshot](https://github.com/Mrunal112/wisehealth-navigator/blob/main/Screenshots/Admin%20Login.png?raw=true)
 - Valid User
