@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/getdata', async function(req, res) {
+app.get('/getdata', async function (req, res) {
     const data = await Patient.find({});
 
     res.status(200).json({
@@ -20,11 +20,9 @@ app.post('/login', async (req, res) => {
     const password = req.body.password;
 
     try {
-        const user = await User.find({
-            where: {
-                username: username,
-                password: password
-            }
+        const user = await User.findOne({
+            username: username,
+            password: password
         });
 
         if (!user) {
@@ -34,8 +32,7 @@ app.post('/login', async (req, res) => {
         }
 
         res.json({
-            msg: 'Login successful',
-            authToken: authToken
+            msg: 'Login successful'
         });
     } catch (error) {
         console.error(error);
@@ -50,34 +47,45 @@ app.post('/addpatient', async (req, res) => {
     const age = req.body.age;
     const tests = req.body.tests;
 
-    const validatePatient = addPatient.safeParse({
-        name: name,
-        age: age,
-        tests: tests
-    })
-
-    if (!validatePatient.success) {
-        res.status(411).json({
-            msg: "Invalid Inputs"
-        })
-    }
-
     try {
+        // const validatePatient = addPatient.safeParse({ name, age, tests });
+
+        // if (!validatePatient.success) {
+        //     return res.status(400).json({
+        //         error: validatePatient.error.message
+        //     });
+        // }
+
         await Patient.create({
-            name: name,
-            age: age,
-            tests: tests,
+            name,
+            age,
+            tests,
             completed: false
         });
+
         res.json({
             msg: 'Patient added successfully'
-        })
+        });
     } catch (error) {
+        console.error(error);
         res.status(500).json({
             error: 'Internal Server Error'
         });
     }
 });
+
+app.put('/updateinfo', async (req, res) => {
+    const name = req.body.name;
+
+    try {
+        const updatedPatient = await Patient.updateOne({ name }, { completed: true });
+        res.status(200).json({ msg: 'Patient updated successfully' });
+    } catch (error) {
+        console.error('Error updating patient:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 app.post('/register', async function (req, res) {
     const username = req.body.username;
