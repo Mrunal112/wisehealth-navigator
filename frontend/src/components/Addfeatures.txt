@@ -5,3 +5,4 @@
 5. May be add the session cookie for admin for expiry about the 8 hours
 6. May be move to the recoil state management
 7. Check for the issues in the Zod library
+8. Add password encryption for the admin table. 
