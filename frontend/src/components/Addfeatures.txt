@@ -1,0 +1,7 @@
+1. Add JSW token Authentication for admin
+2. Change button of login to logout for admin
+3. We can modify database for the particular tests and then add the patients in that queue
+4. Filter option should be there to filter the patients according to the tests.
+5. May be add the session cookie for admin for expiry about the 8 hours
+6. May be move to the recoil state management
+7. Check for the issues in the Zod library
